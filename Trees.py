@@ -205,6 +205,13 @@ class BinaryTree:
 
         return self.search(node.left, key) or self.search(node.right, key)
 
+    def sum_nodes(self,node):
+        if node is None:
+            return 0
+
+        return node.data + self.sum_nodes(node.left) + self.sum_nodes(node.right)
+
+    
 tree = BinaryTree()
 
 tree.root = TreeNode(10)
@@ -236,13 +243,7 @@ print("Degree of the tree:", tree.degree(tree.root))
 print("\n")
 print("No of Leaf nodes:", tree.count_Leaf_node(tree.root))
 print("\n")
-print("Ancestors of node 7:")
-tree.ancestor(tree.root, 7)
-print("\n")
-print("Descendants of node 7:")
-tree.descendant(tree.root, 7)
-print("\n")
-print("Path from root to node 7:")
-tree.path(tree.root, 7)
+print("Sum of all nodes in the tree:", tree.sum_nodes(tree.root))
 print("\n")
 print("Search for node 15 in the tree:", tree.search(tree.root, 15))
+
