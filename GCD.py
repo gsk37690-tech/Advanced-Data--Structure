@@ -1,0 +1,39 @@
+a = int(input())
+b = int(input())
+def gabriel_gcd(a,b):
+    while a != 0 and b != 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+    return a if (a != 0 ) else b
+
+def euclidean_gcd(a,b):
+    while a != b:
+        if a > b:
+            a = a - b
+        else:
+            b = b - a
+    return a
+
+def gcd(a,b):
+    for i in range(1,min(a,b)+1):
+        if a % i == 0 and b % i == 0:
+            gcd = i
+    return gcd
+
+gcdval = gabriel_gcd(a,b)
+
+print("GCD :",gcdval) 
+
+lcm = (a*b)//gcdval
+
+print(gabriel_gcd(a,b))
+
+print(euclidean_gcd(a,b))
+
+print(gcd(a,b))
+
+print("Lcm : ",lcm)
+        
+    
