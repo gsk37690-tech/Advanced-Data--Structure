@@ -13,17 +13,18 @@ class MyCircularLinkedList:
         self.head = None
         self.tail = None
 
-##    # 1. Insert at Beginning
-##    def insert_at_beginning(self, data):
-##
-##        new_node = self.Node(data)
-##
-##        if self.head is None:
-##            self.head = self.tail = new_node
-##        else:
-##            new_node.next = self.head
-##            self.head.prev = new_node
-##            self.head = new_node
+    # 1. Insert at Beginning
+    def insert_at_beginning(self, data):
+
+        new_node = self.Node(data)
+
+        if self.head is None:
+            self.head = self.tail = new_node
+            new_node.next = self.head
+        else:
+            new_node.next = self.head
+            self.head = new_node
+            self.tail.next = self.head
 
     # 2. Display
     def display(self):
@@ -221,7 +222,7 @@ def runner():
     linked_list.insert_at_end(30)
     linked_list.insert_at_end(40)
 
-    #linked_list.insert_at_beginning(5)
+    linked_list.insert_at_beginning(5)
 
     print("Forward:")
     linked_list.display()   
