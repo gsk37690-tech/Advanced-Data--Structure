@@ -58,34 +58,42 @@ class MyCircularLinkedList:
             self.tail = new_node
 
 
-##    # 5. Insert at Position
-##    def insert_at_position(self, position, data):
-##
-##        if position < 0 or position > self._size:
-##            return
-##
-##        if position == 0:
-##            self.insert_at_beginning(data)
-##            return
-##
-##        if position == self._size:
-##            self.insert_at_end(data)
-##            return
-##
-##        temp = self.head
-##
-##        for i in range(position - 1):
-##            temp = temp.next
-##
-##        new_node = self.Node(data)
-##
-##        new_node.next = temp.next
-##        new_node.prev = temp
-##
-##        temp.next.prev = new_node
-##        temp.next = new_node
-##
-##        self._size += 1
+    # 5. Insert at Position
+    def insert_at_position(self, position, data):
+
+        if position < 0:
+            return
+
+        if position == 0:
+            self.insert_at_beginning(data)
+            return
+
+        if self.head is None:
+            return
+
+        temp = self.head
+        size = 0
+
+        while True:
+            size += 1
+            temp = temp.next
+            if temp == self.head:
+                break
+
+        if position > size:
+            return
+
+        if position == size:
+            self.insert_at_end(data)
+            return
+
+        temp = self.head
+        for _ in range(position - 1):
+            temp = temp.next
+
+        new_node = self.Node(data)
+        new_node.next = temp.next
+        temp.next = new_node
 ##
 ##    # 6. Delete Beginning
 ##    def delete_beginning(self):
