@@ -95,19 +95,17 @@ class MyCircularLinkedList:
         new_node.next = temp.next
         temp.next = new_node
 ##
-##    # 6. Delete Beginning
-##    def delete_beginning(self):
-##
-##        if self.head is None:
-##            return
-##
-##        if self.head == self.tail:
-##            self.head = self.tail = None
-##        else:
-##            self.head = self.head.next
-##            self.head.prev = None
-##
-##        self._size -= 1
+    # 6. Delete Beginning
+    def delete_beginning(self):
+
+        if self.head is None:
+            return
+
+        if self.head == self.tail:
+            self.head = self.tail = None
+        else:
+            self.head = self.head.next
+            self.tail.next = self.head
 ##
 ##    # 7. Delete End
 ##    def delete_end(self):
