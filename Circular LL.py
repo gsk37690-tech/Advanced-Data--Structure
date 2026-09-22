@@ -122,99 +122,106 @@ class MyCircularLinkedList:
 
         self.tail = previous
         self.tail.next = self.head
-##
-##    # 8. Delete Position
-##    def delete_position(self, position):
-##
-##        if position < 0 or position >= self._size:
-##            return
-##
-##        if position == 0:
-##            self.delete_beginning()
-##            return
-##
-##        if position == self._size - 1:
-##            self.delete_end()
-##            return
-##
-##        temp = self.head
-##
-##        for i in range(position):
-##            temp = temp.next
-##
-##        temp.prev.next = temp.next
-##        temp.next.prev = temp.prev
-##
-##        self._size -= 1
-##
-##    # 9. Search
-##    def search(self, value):
-##
-##        temp = self.head
-##
-##        while temp is not None:
-##
-##            if temp.data == value:
-##                return True
-##
-##            temp = temp.next
-##
-##        return False
-##
-##    # 10. Get
-##    def get(self, position):
-##
-##        if position < 0 or position >= self._size:
-##            raise Exception("Invalid Position")
-##
-##        temp = self.head
-##
-##        for i in range(position):
-##            temp = temp.next
-##
-##        return temp.data
-##
-##    # 11. Size
-##    def size(self):
-##        return self._size
-##
-##    # 12. Is Empty
-##    def is_empty(self):
-##        return self._size == 0
-##
-##    # 13. Update
-##    def update(self, position, value):
-##
-##        if position < 0 or position >= self._size:
-##            raise Exception("Invalid Position")
-##
-##        temp = self.head
-##
-##        for i in range(position):
-##            temp = temp.next
-##
-##        temp.data = value
-##
-##    # 14. Reverse
-##    def reverse(self):
-##
-##        current = self.head
-##        temp = None
-##
-##        while current is not None:
-##
-##            # Swap prev and next
-##            temp = current.prev
-##            current.prev = current.next
-##            current.next = temp
-##
-##            # Move to next node
-##            current = current.prev
-##
-##        # Swap head and tail
-##        temp = self.head
-##        self.head = self.tail
-##        self.tail = temp
+    # 8. Delete Position
+    def delete_position(self, position):
+
+        if position < 0 or position >= self.size():
+            return
+
+        if position == 0:
+            self.delete_beginning()
+            return
+
+        if position == self.size() - 1:
+            self.delete_end()
+            return
+
+        previous = self.head
+        for _ in range(position - 1):
+            previous = previous.next
+
+        previous.next = previous.next.next
+
+    # 9. Search
+    def search(self, value):
+
+        if self.head is None:
+            return False
+
+        current = self.head
+        while True:
+            if current.data == value:
+                return True
+
+            current = current.next
+            if current == self.head:
+                break
+
+        return False
+
+    # 10. Get
+    def get(self, position):
+
+        if position < 0 or position >= self.size():
+            raise Exception("Invalid Position")
+
+        current = self.head
+        for _ in range(position):
+            current = current.next
+
+        return current.data
+
+    # 11. Size
+    def size(self):
+
+        if self.head is None:
+            return 0
+
+        count = 1
+        current = self.head.next
+        while current != self.head:
+            count += 1
+            current = current.next
+
+        return count
+
+    # 12. Is Empty
+    def is_empty(self):
+        return self.head is None
+
+    # 13. Update
+    def update(self, position, value):
+
+        if position < 0 or position >= self.size():
+            raise Exception("Invalid Position")
+
+        current = self.head
+        for _ in range(position):
+            current = current.next
+
+        current.data = value
+
+    # 14. Reverse
+    def reverse(self):
+
+        if self.head is None or self.head == self.tail:
+            return
+
+        old_head = self.head
+        previous = self.tail
+        current = self.head
+
+        while True:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+
+            if current == old_head:
+                break
+
+        self.tail = old_head
+        self.head = previous
 
 
 # --------------------------------------------------
