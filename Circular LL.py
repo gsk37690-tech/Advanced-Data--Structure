@@ -106,20 +106,22 @@ class MyCircularLinkedList:
         else:
             self.head = self.head.next
             self.tail.next = self.head
-##
-##    # 7. Delete End
-##    def delete_end(self):
-##
-##        if self.tail is None:
-##            return
-##
-##        if self.head == self.tail:
-##            self.head = self.tail = None
-##        else:
-##            self.tail = self.tail.prev
-##            self.tail.next = None
-##
-##        self._size -= 1
+    # 7. Delete End
+    def delete_end(self):
+
+        if self.tail is None:
+            return
+
+        if self.head == self.tail:
+            self.head = self.tail = None
+            return
+
+        previous = self.head
+        while previous.next != self.tail:
+            previous = previous.next
+
+        self.tail = previous
+        self.tail.next = self.head
 ##
 ##    # 8. Delete Position
 ##    def delete_position(self, position):
