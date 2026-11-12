@@ -6,7 +6,7 @@ for j in range(n):
             temp = arr[i]
             arr[i] = arr[i+1]
             arr[i + 1] = temp 
-
+    
 if arr == sorted(arr):
     print("true")
 else:
